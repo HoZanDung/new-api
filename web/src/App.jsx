@@ -49,8 +49,9 @@ import OAuth2Callback from './components/auth/OAuth2Callback';
 import PersonalSetting from './components/settings/PersonalSetting';
 import Setup from './pages/Setup';
 import SetupCheck from './components/layout/SetupCheck';
+import NewLandingPage from './pages/NewHome';
+import TutorialPage from './pages/Tutorial';
 
-const Home = lazy(() => import('./pages/Home'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
 const About = lazy(() => import('./pages/About'));
 const UserAgreement = lazy(() => import('./pages/UserAgreement'));
@@ -94,7 +95,15 @@ function App() {
           path='/'
           element={
             <Suspense fallback={<Loading></Loading>} key={location.pathname}>
-              <Home />
+              <NewLandingPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path='/tutorial'
+          element={
+            <Suspense fallback={<Loading></Loading>} key={location.pathname}>
+              <TutorialPage />
             </Suspense>
           }
         />
