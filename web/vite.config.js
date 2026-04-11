@@ -91,15 +91,15 @@ export default defineConfig({
     host: '0.0.0.0',
     proxy: {
       '/api': {
-        target: 'http://ai.xxopus.cc',
+        target: 'http://xxopus.cc',
         changeOrigin: true,
       },
       '/mj': {
-        target: 'http://ai.xxopus.cc',
+        target: 'http://xxopus.cc',
         changeOrigin: true,
       },
       '/pg': {
-        target: 'http://ai.xxopus.cc',
+        target: 'http://xxopus.cc',
         changeOrigin: true,
       },
     },

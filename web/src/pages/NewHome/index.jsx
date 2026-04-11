@@ -24,7 +24,7 @@ import { useIsMobile } from '../../hooks/common/useIsMobile';
 import { StatusContext } from '../../context/Status';
 import { useActualTheme } from '../../context/Theme';
 import { useTranslation } from 'react-i18next';
-import { IconPlay, IconCopy, IconHelpCircle } from '@douyinfe/semi-icons';
+import { IconPlay, IconCopy, IconHelpCircle, IconDownload } from '@douyinfe/semi-icons';
 import { Link, useNavigate } from 'react-router-dom';
 import NoticeModal from '../../components/layout/NoticeModal';
 import {
@@ -45,9 +45,22 @@ const NewLandingPage = () => {
   const [homePageContentLoaded, setHomePageContentLoaded] = useState(false);
   const [homePageContent, setHomePageContent] = useState('');
   const [noticeVisible, setNoticeVisible] = useState(false);
+  const [userOS, setUserOS] = useState('unknown');
   const isMobile = useIsMobile();
   const serverAddress =
     statusState?.status?.server_address || `${window.location.origin}`;
+
+  // 检测用户操作系统
+  useEffect(() => {
+    const detectOS = () => {
+      const userAgent = window.navigator.userAgent.toLowerCase();
+      if (userAgent.indexOf('win') > -1) return 'windows';
+      if (userAgent.indexOf('mac') > -1) return 'mac';
+      if (userAgent.indexOf('linux') > -1) return 'linux';
+      return 'unknown';
+    };
+    setUserOS(detectOS());
+  }, []);
   const isChinese = i18n.language.startsWith('zh');
   const isDark = actualTheme === 'dark';
 
@@ -374,50 +387,215 @@ const NewLandingPage = () => {
           </div>
 
           <div className='flex flex-col gap-6'>
-            {[
-              { 
-                step: '1', 
-                title: t('注册并登录账户'), 
-                desc: t('访问平台，注册一个账户（请记住用户名，方便找回），注册完成后登录。'),
-              },
-              { 
-                step: '2', 
-                title: t('兑换额度并创建令牌'), 
-                desc: t('点击「钱包管理」→「兑换额度」，然后点击「令牌管理」→「添加令牌」创建API Key。'),
-              },
-              { 
-                step: '3', 
-                title: t('配置并开始使用'), 
-                desc: t('复制令牌和API地址，配置到你的应用中即可开始使用Claude API。'),
-              },
-            ].map((item, idx) => (
-              <div
-                key={idx}
-                className='flex gap-4 p-6 rounded-2xl border transition-all duration-300 hover:translate-x-2'
+            {/* 步骤1 */}
+            <div
+              className='flex gap-4 p-6 rounded-2xl border transition-all duration-300 hover:translate-x-2'
+              style={{
+                background: 'var(--semi-color-bg-1)',
+                borderColor: 'var(--semi-color-border)',
+              }}
+            >
+              <div 
+                className='w-12 h-12 rounded-xl flex items-center justify-center text-lg font-bold shrink-0'
                 style={{
-                  background: 'var(--semi-color-bg-1)',
-                  borderColor: 'var(--semi-color-border)',
+                  background: 'linear-gradient(135deg, var(--semi-color-primary), #a855f7)',
+                  color: 'var(--semi-color-bg-0)',
                 }}
               >
+                1
+              </div>
+              <div>
+                <h3 className='text-lg font-semibold mb-2' style={{ color: 'var(--semi-color-text-0)' }}>
+                  {t('注册并登录账户')}
+                </h3>
+                <p className='text-sm' style={{ color: 'var(--semi-color-text-1)' }}>
+                  {t('访问平台，注册一个账户（请记住用户名，方便找回），注册完成后登录。')}
+                </p>
+              </div>
+            </div>
+
+            {/* 步骤2 */}
+            <div
+              className='flex gap-4 p-6 rounded-2xl border transition-all duration-300 hover:translate-x-2'
+              style={{
+                background: 'var(--semi-color-bg-1)',
+                borderColor: 'var(--semi-color-border)',
+              }}
+            >
+              <div 
+                className='w-12 h-12 rounded-xl flex items-center justify-center text-lg font-bold shrink-0'
+                style={{
+                  background: 'linear-gradient(135deg, var(--semi-color-primary), #a855f7)',
+                  color: 'var(--semi-color-bg-0)',
+                }}
+              >
+                2
+              </div>
+              <div>
+                <h3 className='text-lg font-semibold mb-2' style={{ color: 'var(--semi-color-text-0)' }}>
+                  {t('兑换额度并创建令牌')}
+                </h3>
+                <p className='text-sm' style={{ color: 'var(--semi-color-text-1)' }}>
+                  {t('点击「钱包管理」→「兑换额度」，然后点击「令牌管理」→「添加令牌」创建API Key。')}
+                </p>
+              </div>
+            </div>
+
+            {/* 步骤3 - 下载安装 */}
+            <div
+              className='flex gap-4 p-6 rounded-2xl border transition-all duration-300 hover:translate-x-2'
+              style={{
+                background: 'var(--semi-color-bg-1)',
+                borderColor: 'var(--semi-color-border)',
+              }}
+            >
+              <div 
+                className='w-12 h-12 rounded-xl flex items-center justify-center text-lg font-bold shrink-0'
+                style={{
+                  background: 'linear-gradient(135deg, var(--semi-color-primary), #a855f7)',
+                  color: 'var(--semi-color-bg-0)',
+                }}
+              >
+                3
+              </div>
+              <div className='flex-1'>
+                <h3 className='text-lg font-semibold mb-4' style={{ color: 'var(--semi-color-text-0)' }}>
+                  {t('下载并一键安装')}
+                </h3>
+                
+                {/* Windows 版本 */}
                 <div 
-                  className='w-12 h-12 rounded-xl flex items-center justify-center text-lg font-bold shrink-0'
+                  className={`mb-4 p-4 rounded-xl border-2 transition-all duration-300 hover:shadow-lg ${
+                    userOS === 'windows' 
+                      ? 'shadow-lg scale-[1.02]' 
+                      : 'opacity-70 hover:opacity-100'
+                  }`}
                   style={{
-                    background: 'linear-gradient(135deg, var(--semi-color-primary), #a855f7)',
-                    color: 'var(--semi-color-bg-0)',
+                    background: userOS === 'windows' 
+                      ? 'linear-gradient(135deg, rgba(0,120,212,0.12), rgba(0,120,212,0.04))'
+                      : 'var(--semi-color-bg-2)',
+                    borderColor: userOS === 'windows' ? '#0078D4' : 'var(--semi-color-border)',
                   }}
                 >
-                  {item.step}
+                  <div className='flex items-center gap-3 mb-2'>
+                    <div 
+                      className='w-10 h-10 rounded-xl flex items-center justify-center shadow-md'
+                      style={{ 
+                        background: userOS === 'windows' 
+                          ? 'linear-gradient(135deg, #0078D4, #106EBE)'
+                          : 'linear-gradient(135deg, #6B7280, #4B5563)'
+                      }}
+                    >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                        <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
+                      </svg>
+                    </div>
+                    <div className='flex-1'>
+                      <div className='flex items-center gap-2'>
+                        <span className='font-bold text-base' style={{ color: userOS === 'windows' ? '#0078D4' : 'var(--semi-color-text-0)' }}>
+                          Windows
+                        </span>
+                        {userOS === 'windows' && (
+                          <span 
+                            className='px-2 py-0.5 text-xs font-medium rounded-full'
+                            style={{ 
+                              background: 'linear-gradient(135deg, #0078D4, #106EBE)',
+                              color: 'white'
+                            }}
+                          >
+                            {t('当前系统')}
+                          </span>
+                        )}
+                      </div>
+                      <p className='text-xs mt-0.5' style={{ color: 'var(--semi-color-text-2)' }}>
+                        {t('解压后运行')} <code className={`px-1.5 py-0.5 rounded font-mono text-xs ${userOS === 'windows' ? 'bg-blue-100 text-blue-700' : 'bg-gray-200 text-gray-600'}`}>claude.bat</code>
+                      </p>
+                    </div>
+                    <Button
+                      type={userOS === 'windows' ? 'primary' : 'secondary'}
+                      theme='solid'
+                      size='large'
+                      icon={<IconDownload />}
+                      onClick={() => window.open('/assets/files/Windows.zip', '_blank')}
+                      style={userOS === 'windows' ? { 
+                        background: 'linear-gradient(135deg, #0078D4, #106EBE)',
+                        borderColor: '#0078D4'
+                      } : {}}
+                    >
+                      {t('下载')}
+                    </Button>
+                  </div>
                 </div>
-                <div>
-                  <h3 className='text-lg font-semibold mb-2' style={{ color: 'var(--semi-color-text-0)' }}>
-                    {item.title}
-                  </h3>
-                  <p className='text-sm' style={{ color: 'var(--semi-color-text-1)' }}>
-                    {item.desc}
-                  </p>
+
+                {/* Mac 版本 */}
+                <div 
+                  className={`p-4 rounded-xl border-2 transition-all duration-300 hover:shadow-lg ${
+                    userOS === 'mac' 
+                      ? 'shadow-lg scale-[1.02]' 
+                      : 'opacity-70 hover:opacity-100'
+                  }`}
+                  style={{
+                    background: userOS === 'mac' 
+                      ? 'linear-gradient(135deg, rgba(50,50,50,0.1), rgba(50,50,50,0.03))'
+                      : 'var(--semi-color-bg-2)',
+                    borderColor: userOS === 'mac' ? '#333' : 'var(--semi-color-border)',
+                  }}
+                >
+                  <div className='flex items-center gap-3'>
+                    <div 
+                      className='w-10 h-10 rounded-xl flex items-center justify-center shadow-md'
+                      style={{ 
+                        background: userOS === 'mac' 
+                          ? 'linear-gradient(135deg, #333, #111)'
+                          : 'linear-gradient(135deg, #6B7280, #4B5563)'
+                      }}
+                    >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                      </svg>
+                    </div>
+                    <div className='flex-1'>
+                      <div className='flex items-center gap-2'>
+                        <span className='font-bold text-base' style={{ color: userOS === 'mac' ? '#333' : 'var(--semi-color-text-0)' }}>
+                          macOS
+                        </span>
+                        {userOS === 'mac' && (
+                          <span 
+                            className='px-2 py-0.5 text-xs font-medium rounded-full'
+                            style={{ 
+                              background: 'linear-gradient(135deg, #333, #111)',
+                              color: 'white'
+                            }}
+                          >
+                               {t('当前系统')}
+                          </span>
+                        )}
+                      </div>
+                      <p className='text-xs mt-0.5' style={{ color: 'var(--semi-color-text-2)' }}>
+                        {t('解压后运行')} <code className={`px-1.5 py-0.5 rounded font-mono text-xs ${userOS === 'mac' ? 'bg-gray-300 text-gray-800' : 'bg-gray-200 text-gray-600'}`}>claude.command</code>
+                      </p>
+                    </div>
+                    <Button
+                      type={userOS === 'mac' ? 'primary' : 'secondary'}
+                      theme='solid'
+                      size='large'
+                      icon={<IconDownload />}
+                      onClick={() => window.open('/assets/files/Mac.zip', '_blank')}
+                      style={userOS === 'mac' ? { 
+                        background: 'linear-gradient(135deg, #333, #111)',
+                        borderColor: '#333'
+                      } : {}}
+                    >
+                      {t('下载')}
+                    </Button>
+                  </div>
                 </div>
+
+                <p className='text-xs mt-4 pt-3 border-t text-center' style={{ color: 'var(--semi-color-text-2)', borderColor: 'var(--semi-color-border)' }}>
+                  {t('安装完成后输入 API Key（使用后台创建的令牌），即可开始使用 Claude')}
+                </p>
               </div>
-            ))}
+            </div>
           </div>
 
           <div className='text-center mt-8'>
