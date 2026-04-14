@@ -157,16 +157,314 @@ const NewLandingPage = () => {
         onClose={() => setNoticeVisible(false)}
         isMobile={isMobile}
       />
-      
-      {/* Hero Section */}
-      <section className='relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden'>
+
+      {/* Quick Start Section - 教程步骤放在最顶部 */}
+      <section className='pt-20 pb-16 px-4' style={{ background: 'var(--semi-color-bg-1)' }}>
+        <div className='max-w-5xl mx-auto'>
+          <div className='text-center mb-12'>
+            <span 
+              className='inline-block px-4 py-1.5 rounded-full text-sm mb-4 font-medium'
+              style={{
+                background: 'linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(168, 85, 247, 0.15))',
+                color: 'var(--semi-color-primary)',
+              }}
+            >
+              {t('快速上手')}
+            </span>
+            <h2 className='text-2xl md:text-3xl lg:text-4xl font-bold mb-3' style={{ color: 'var(--semi-color-text-0)' }}>
+              {t('三步开始使用')}
+            </h2>
+            <p className='text-base' style={{ color: 'var(--semi-color-text-1)' }}>
+              {t('按照以下步骤，几分钟内即可开始使用 Claude')}
+            </p>
+          </div>
+
+          <div className='grid grid-cols-1 lg:grid-cols-3 gap-6'>
+            {/* 步骤1 */}
+            <div
+              className='relative p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 group'
+              style={{
+                background: 'var(--semi-color-bg-0)',
+                borderColor: 'var(--semi-color-border)',
+              }}
+            >
+              <div 
+                className='absolute -top-3 -left-3 w-10 h-10 rounded-xl flex items-center justify-center text-lg font-bold shadow-lg'
+                style={{
+                  background: 'linear-gradient(135deg, var(--semi-color-primary), #a855f7)',
+                  color: 'var(--semi-color-bg-0)',
+                }}
+              >
+                1
+              </div>
+              <div className='mt-4'>
+                <div 
+                  className='w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-4'
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(168, 85, 247, 0.1))',
+                  }}
+                >
+                  👤
+                </div>
+                <h3 className='text-lg font-semibold mb-2' style={{ color: 'var(--semi-color-text-0)' }}>
+                  {t('注册并登录账户')}
+                </h3>
+                <p className='text-sm leading-relaxed' style={{ color: 'var(--semi-color-text-1)' }}>
+                  {t('访问平台，注册一个账户（请记住用户名，方便找回），注册完成后登录。')}
+                </p>
+                <Link to='/console'>
+                  <Button
+                    type='primary'
+                    theme='light'
+                    size='small'
+                    className='mt-4 !rounded-full'
+                  >
+                    {t('去注册')}
+                  </Button>
+                </Link>
+              </div>
+            </div>
+
+            {/* 步骤2 */}
+            <div
+              className='relative p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 group'
+              style={{
+                background: 'var(--semi-color-bg-0)',
+                borderColor: 'var(--semi-color-border)',
+              }}
+            >
+              <div 
+                className='absolute -top-3 -left-3 w-10 h-10 rounded-xl flex items-center justify-center text-lg font-bold shadow-lg'
+                style={{
+                  background: 'linear-gradient(135deg, var(--semi-color-primary), #a855f7)',
+                  color: 'var(--semi-color-bg-0)',
+                }}
+              >
+                2
+              </div>
+              <div className='mt-4'>
+                <div 
+                  className='w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-4'
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(168, 85, 247, 0.1))',
+                  }}
+                >
+                  🔑
+                </div>
+                <h3 className='text-lg font-semibold mb-2' style={{ color: 'var(--semi-color-text-0)' }}>
+                  {t('兑换额度并创建令牌')}
+                </h3>
+                <p className='text-sm leading-relaxed' style={{ color: 'var(--semi-color-text-1)' }}>
+                  {t('点击「钱包管理」→「兑换额度或者订阅」，然后点击「令牌管理」→「添加令牌」创建API Key。')}
+                </p>
+                <Link to='/console'>
+                  <Button
+                    type='primary'
+                    theme='light'
+                    size='small'
+                    className='mt-4 !rounded-full'
+                  >
+                    {t('去创建')}
+                  </Button>
+                </Link>
+              </div>
+            </div>
+
+            {/* 步骤3 - 下载安装 */}
+            <div
+              className='relative p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 group'
+              style={{
+                background: 'var(--semi-color-bg-0)',
+                borderColor: 'var(--semi-color-border)',
+              }}
+            >
+              <div 
+                className='absolute -top-3 -left-3 w-10 h-10 rounded-xl flex items-center justify-center text-lg font-bold shadow-lg'
+                style={{
+                  background: 'linear-gradient(135deg, var(--semi-color-primary), #a855f7)',
+                  color: 'var(--semi-color-bg-0)',
+                }}
+              >
+                3
+              </div>
+              <div className='mt-4'>
+                <div 
+                  className='w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-4'
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(168, 85, 247, 0.1))',
+                  }}
+                >
+                  💻
+                </div>
+                <h3 className='text-lg font-semibold mb-3' style={{ color: 'var(--semi-color-text-0)' }}>
+                  {t('下载并一键安装')}
+                </h3>
+                
+                {/* Windows 版本 */}
+                <div 
+                  onClick={() => window.open('/assets/files/Windows.zip', '_blank')}
+                  className={`mb-3 p-3 rounded-xl border transition-all cursor-pointer duration-300 ${
+                    userOS === 'windows' 
+                      ? 'shadow-md' 
+                      : 'opacity-80 hover:opacity-100'
+                  }`}
+                  style={{
+                    background: userOS === 'windows' 
+                      ? 'linear-gradient(135deg, rgba(0,120,212,0.1), rgba(0,120,212,0.03))'
+                      : 'var(--semi-color-bg-1)',
+                    borderColor: userOS === 'windows' ? '#0078D4' : 'var(--semi-color-border)',
+                  }}
+                >
+                  <div className='flex items-center gap-3'>
+                    <div 
+                      className='w-8 h-8 rounded-lg flex items-center justify-center'
+                      style={{ 
+                        background: userOS === 'windows' 
+                          ? 'linear-gradient(135deg, #0078D4, #106EBE)'
+                          : 'linear-gradient(135deg, #6B7280, #4B5563)'
+                      }}
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                        <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
+                      </svg>
+                    </div>
+                    <div className='flex-1 min-w-0'>
+                      <div className='flex items-center gap-2'>
+                        <span className='font-semibold text-sm' style={{ color: userOS === 'windows' ? '#0078D4' : 'var(--semi-color-text-0)' }}>
+                          Windows
+                        </span>
+                        {userOS === 'windows' && (
+                          <span 
+                            className='px-1.5 py-0.5 text-xs rounded-full'
+                            style={{ 
+                              background: '#0078D4',
+                              color: 'white'
+                            }}
+                          >
+                            {t('推荐')}
+                          </span>
+                        )}
+                      </div>
+                      <p className='text-xs mt-0.5 truncate' style={{ color: 'var(--semi-color-text-2)' }}>
+                        {t('运行')} <code className='px-1 rounded font-mono text-xs bg-gray-200 dark:bg-gray-700'>claude.bat</code>
+                      </p>
+                    </div>
+                    <Button
+                      type={userOS === 'windows' ? 'primary' : 'secondary'}
+                      theme='solid'
+                      size='small'
+                      icon={<IconDownload />}
+                      style={userOS === 'windows' ? { 
+                        background: 'linear-gradient(135deg, #0078D4, #106EBE)',
+                      } : {}}
+                    />
+                  </div>
+                </div>
+
+                {/* Mac 版本 */}
+                <div 
+                  onClick={() => window.open('/assets/files/Mac.zip', '_blank')}
+                  className={`p-3 rounded-xl border transition-all cursor-pointer duration-300 ${
+                    userOS === 'mac' 
+                      ? 'shadow-md' 
+                      : 'opacity-80 hover:opacity-100'
+                  }`}
+                  style={{
+                    background: userOS === 'mac' 
+                      ? 'linear-gradient(135deg, rgba(50,50,50,0.08), rgba(50,50,50,0.02))'
+                      : 'var(--semi-color-bg-1)',
+                    borderColor: userOS === 'mac' ? '#333' : 'var(--semi-color-border)',
+                  }}
+                >
+                  <div className='flex items-center gap-3'>
+                    <div 
+                      className='w-8 h-8 rounded-lg flex items-center justify-center'
+                      style={{ 
+                        background: userOS === 'mac' 
+                          ? 'linear-gradient(135deg, #333, #111)'
+                          : 'linear-gradient(135deg, #6B7280, #4B5563)'
+                      }}
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                      </svg>
+                    </div>
+                    <div className='flex-1 min-w-0'>
+                      <div className='flex items-center gap-2'>
+                        <span className='font-semibold text-sm' style={{ color: userOS === 'mac' ? '#333' : 'var(--semi-color-text-0)' }}>
+                          macOS
+                        </span>
+                        {userOS === 'mac' && (
+                          <span 
+                            className='px-1.5 py-0.5 text-xs rounded-full'
+                            style={{ 
+                              background: '#333',
+                              color: 'white'
+                            }}
+                          >
+                            {t('推荐')}
+                          </span>
+                        )}
+                      </div>
+                      <p className='text-xs mt-0.5 truncate' style={{ color: 'var(--semi-color-text-2)' }}>
+                        {t('运行')} <code className='px-1 rounded font-mono text-xs bg-gray-200 dark:bg-gray-700'>claude.command</code>
+                      </p>
+                    </div>
+                    <Button
+                      type={userOS === 'mac' ? 'primary' : 'secondary'}
+                      theme='solid'
+                      size='small'
+                      icon={<IconDownload />}
+                      style={userOS === 'mac' ? { 
+                        background: 'linear-gradient(135deg, #333, #111)',
+                      } : {}}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 提示信息 */}
+          <div 
+            className='mt-8 p-4 rounded-xl text-center'
+            style={{
+              background: 'linear-gradient(135deg, rgba(0, 240, 255, 0.05), rgba(168, 85, 247, 0.05))',
+              border: '1px dashed var(--semi-color-border)',
+            }}
+          >
+            <p className='text-sm' style={{ color: 'var(--semi-color-text-1)' }}>
+              💡 {t('安装完成后输入 API Key（使用后台创建的令牌），即可开始使用 Claude')}
+            </p>
+            <p className='text-xs mt-2' style={{ color: 'var(--semi-color-text-2)' }}>
+              ⚠️ {t('请关闭防病毒软件，防止安装失败')}
+            </p>
+          </div>
+
+          <div className='text-center mt-8'>
+            <Button
+              theme='solid'
+              type='primary'
+              size='large'
+              className='!rounded-3xl px-8'
+              icon={<IconHelpCircle />}
+              onClick={() => navigate('/tutorial')}
+            >
+              {t('查看手动配置教程')}
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Hero Section - 标题区放在教程下面 */}
+      <section className='relative py-16 px-4 overflow-hidden'>
         {/* Background Effects */}
         <div className='absolute inset-0 overflow-hidden pointer-events-none'>
           <div 
             className='absolute w-[600px] h-[600px] rounded-full blur-[150px] opacity-15'
             style={{
               background: 'var(--semi-color-primary)',
-              top: '-200px',
+              top: '-300px',
               right: '-200px',
               animation: 'float 20s ease-in-out infinite',
             }}
@@ -175,25 +473,14 @@ const NewLandingPage = () => {
             className='absolute w-[600px] h-[600px] rounded-full blur-[150px] opacity-15'
             style={{
               background: '#a855f7',
-              bottom: '-300px',
+              bottom: '-400px',
               left: '-200px',
               animation: 'float 25s ease-in-out infinite reverse',
             }}
           />
-          {/* Grid Pattern */}
-          <div 
-            className='absolute inset-0 opacity-[0.02]'
-            style={{
-              backgroundImage: `
-                linear-gradient(var(--semi-color-text-0) 1px, transparent 1px),
-                linear-gradient(90deg, var(--semi-color-text-0) 1px, transparent 1px)
-              `,
-              backgroundSize: '50px 50px',
-            }}
-          />
         </div>
 
-        <div className='relative z-10 max-w-4xl mx-auto text-center mt-16'>
+        <div className='relative z-10 max-w-4xl mx-auto text-center'>
           {/* Badge */}
           <div 
             className='inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 border'
@@ -215,7 +502,7 @@ const NewLandingPage = () => {
           </div>
 
           {/* Title */}
-          <h1 className='text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6'>
+          <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4'>
             <span className='shine-text'>{t('Claude Code')}</span>
             <br />
             <span style={{ color: 'var(--semi-color-text-0)' }}>{t('畅快体验')}</span>
@@ -223,14 +510,14 @@ const NewLandingPage = () => {
 
           {/* Description */}
           <p 
-            className='text-base md:text-lg lg:text-xl mb-8 max-w-xl mx-auto'
+            className='text-base md:text-lg mb-6 max-w-xl mx-auto'
             style={{ color: 'var(--semi-color-text-1)' }}
           >
-            {t('无需翻墙，原生接入Claude API。稳定、快速、价格实惠，让你的AI开发更高效。')}
+            {t('无需翻墙，原生接入Claude API。稳定、快速、价格实惠。')}
           </p>
 
           {/* URL Input */}
-          <div className='flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md mx-auto mb-8'>
+          <div className='flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md mx-auto mb-6'>
             <Input
               readonly
               value={serverAddress}
@@ -248,7 +535,7 @@ const NewLandingPage = () => {
           </div>
 
           {/* Action Buttons */}
-          <div className='flex flex-row gap-4 justify-center items-center mb-12'>
+          <div className='flex flex-row gap-4 justify-center items-center'>
             <Link to='/console'>
               <Button
                 theme='solid'
@@ -260,44 +547,6 @@ const NewLandingPage = () => {
                 {t('立即开始')}
               </Button>
             </Link>
-            <Button
-              size={isMobile ? 'default' : 'large'}
-              className='!rounded-3xl px-6 py-2'
-              icon={<IconHelpCircle />}
-              onClick={() => navigate('/tutorial')}
-            >
-              {t('查看教程')}
-            </Button>
-          </div>
-
-          {/* Supported Models */}
-          <div className='mt-12'>
-            <Text
-              type='tertiary'
-              className='text-lg md:text-xl font-light mb-6 block'
-            >
-              {t('地表最强大模型Claude')}
-            </Text>
-            <div className='flex flex-wrap items-center justify-center gap-6 max-w-3xl mx-auto'>
-              <div className='w-10 h-10 flex items-center justify-center'>
-                <Claude.Color size={40} />
-              </div>
-              {/* <div className='w-10 h-10 flex items-center justify-center'>
-                <OpenAI size={40} />
-              </div>
-              <div className='w-10 h-10 flex items-center justify-center'>
-                <Gemini.Color size={40} />
-              </div>
-              <div className='w-10 h-10 flex items-center justify-center'>
-                <DeepSeek.Color size={40} />
-              </div>
-              <div className='w-10 h-10 flex items-center justify-center'>
-                <Qwen.Color size={40} />
-              </div>
-              <div className='w-10 h-10 flex items-center justify-center'>
-                <Typography.Text className='!text-xl font-bold'>30+</Typography.Text>
-              </div> */}
-            </div>
           </div>
         </div>
       </section>
@@ -367,253 +616,7 @@ const NewLandingPage = () => {
         </div>
       </section>
 
-      {/* Quick Start Section */}
-      <section className='py-20 px-4'>
-        <div className='max-w-4xl mx-auto'>
-          <div className='text-center mb-12'>
-            <span 
-              className='inline-block px-4 py-1 rounded-full text-sm mb-4 border'
-              style={{
-                background: 'rgba(0, 240, 255, 0.1)',
-                borderColor: 'rgba(0, 240, 255, 0.2)',
-                color: 'var(--semi-color-primary)',
-              }}
-            >
-              {t('快速上手')}
-            </span>
-            <h2 className='text-2xl md:text-3xl lg:text-4xl font-bold mb-4' style={{ color: 'var(--semi-color-text-0)' }}>
-              {t('三步开始使用')}
-            </h2>
-          </div>
-
-          <div className='flex flex-col gap-6'>
-            {/* 步骤1 */}
-            <div
-              className='flex gap-4 p-6 rounded-2xl border transition-all duration-300 hover:translate-x-2'
-              style={{
-                background: 'var(--semi-color-bg-1)',
-                borderColor: 'var(--semi-color-border)',
-              }}
-            >
-              <div 
-                className='w-12 h-12 rounded-xl flex items-center justify-center text-lg font-bold shrink-0'
-                style={{
-                  background: 'linear-gradient(135deg, var(--semi-color-primary), #a855f7)',
-                  color: 'var(--semi-color-bg-0)',
-                }}
-              >
-                1
-              </div>
-              <div>
-                <h3 className='text-lg font-semibold mb-2' style={{ color: 'var(--semi-color-text-0)' }}>
-                  {t('注册并登录账户')}
-                </h3>
-                <p className='text-sm' style={{ color: 'var(--semi-color-text-1)' }}>
-                  {t('访问平台，注册一个账户（请记住用户名，方便找回），注册完成后登录。')}
-                </p>
-              </div>
-            </div>
-
-            {/* 步骤2 */}
-            <div
-              className='flex gap-4 p-6 rounded-2xl border transition-all duration-300 hover:translate-x-2'
-              style={{
-                background: 'var(--semi-color-bg-1)',
-                borderColor: 'var(--semi-color-border)',
-              }}
-            >
-              <div 
-                className='w-12 h-12 rounded-xl flex items-center justify-center text-lg font-bold shrink-0'
-                style={{
-                  background: 'linear-gradient(135deg, var(--semi-color-primary), #a855f7)',
-                  color: 'var(--semi-color-bg-0)',
-                }}
-              >
-                2
-              </div>
-              <div>
-                <h3 className='text-lg font-semibold mb-2' style={{ color: 'var(--semi-color-text-0)' }}>
-                  {t('兑换额度并创建令牌')}
-                </h3>
-                <p className='text-sm' style={{ color: 'var(--semi-color-text-1)' }}>
-                  {t('点击「钱包管理」→「兑换额度或者订阅」，然后点击「令牌管理」→「添加令牌」创建API Key。')}
-                </p>
-              </div>
-            </div>
-
-            {/* 步骤3 - 下载安装 */}
-            <div
-              className='flex gap-4 p-6 rounded-2xl border transition-all duration-300 hover:translate-x-2'
-              style={{
-                background: 'var(--semi-color-bg-1)',
-                borderColor: 'var(--semi-color-border)',
-              }}
-            >
-              <div 
-                className='w-12 h-12 rounded-xl flex items-center justify-center text-lg font-bold shrink-0'
-                style={{
-                  background: 'linear-gradient(135deg, var(--semi-color-primary), #a855f7)',
-                  color: 'var(--semi-color-bg-0)',
-                }}
-              >
-                3
-              </div>
-              <div className='flex-1'>
-                <h3 className='text-lg font-semibold mb-4' style={{ color: 'var(--semi-color-text-0)' }}>
-                  {t('下载并一键安装')}，（请关闭防病毒软件，防止安装失败）
-                </h3>
-                
-                {/* Windows 版本 */}
-                <div 
-                  className={`mb-4 p-4 rounded-xl border-2 transition-all duration-300 hover:shadow-lg ${
-                    userOS === 'windows' 
-                      ? 'shadow-lg scale-[1.02]' 
-                      : 'opacity-70 hover:opacity-100'
-                  }`}
-                  style={{
-                    background: userOS === 'windows' 
-                      ? 'linear-gradient(135deg, rgba(0,120,212,0.12), rgba(0,120,212,0.04))'
-                      : 'var(--semi-color-bg-2)',
-                    borderColor: userOS === 'windows' ? '#0078D4' : 'var(--semi-color-border)',
-                  }}
-                >
-                  <div className='flex items-center gap-3 mb-2'>
-                    <div 
-                      className='w-10 h-10 rounded-xl flex items-center justify-center shadow-md'
-                      style={{ 
-                        background: userOS === 'windows' 
-                          ? 'linear-gradient(135deg, #0078D4, #106EBE)'
-                          : 'linear-gradient(135deg, #6B7280, #4B5563)'
-                      }}
-                    >
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                        <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
-                      </svg>
-                    </div>
-                    <div className='flex-1'>
-                      <div className='flex items-center gap-2'>
-                        <span className='font-bold text-base' style={{ color: userOS === 'windows' ? '#0078D4' : 'var(--semi-color-text-0)' }}>
-                          Windows
-                        </span>
-                        {userOS === 'windows' && (
-                          <span 
-                            className='px-2 py-0.5 text-xs font-medium rounded-full'
-                            style={{ 
-                              background: 'linear-gradient(135deg, #0078D4, #106EBE)',
-                              color: 'white'
-                            }}
-                          >
-                            {t('当前系统')}
-                          </span>
-                        )}
-                      </div>
-                      <p className='text-xs mt-0.5' style={{ color: 'var(--semi-color-text-2)' }}>
-                        {t('解压后运行')} <code className={`px-1.5 py-0.5 rounded font-mono text-xs ${userOS === 'windows' ? 'bg-blue-100 text-blue-700' : 'bg-gray-200 text-gray-600'}`}>claude.bat</code>
-                      </p>
-                    </div>
-                    <Button
-                      type={userOS === 'windows' ? 'primary' : 'secondary'}
-                      theme='solid'
-                      size='large'
-                      icon={<IconDownload />}
-                      onClick={() => window.open('/assets/files/Windows.zip', '_blank')}
-                      style={userOS === 'windows' ? { 
-                        background: 'linear-gradient(135deg, #0078D4, #106EBE)',
-                        borderColor: '#0078D4'
-                      } : {}}
-                    >
-                      {t('下载')}
-                    </Button>
-                  </div>
-                </div>
-
-                {/* Mac 版本 */}
-                <div 
-                  className={`p-4 rounded-xl border-2 transition-all duration-300 hover:shadow-lg ${
-                    userOS === 'mac' 
-                      ? 'shadow-lg scale-[1.02]' 
-                      : 'opacity-70 hover:opacity-100'
-                  }`}
-                  style={{
-                    background: userOS === 'mac' 
-                      ? 'linear-gradient(135deg, rgba(50,50,50,0.1), rgba(50,50,50,0.03))'
-                      : 'var(--semi-color-bg-2)',
-                    borderColor: userOS === 'mac' ? '#333' : 'var(--semi-color-border)',
-                  }}
-                >
-                  <div className='flex items-center gap-3'>
-                    <div 
-                      className='w-10 h-10 rounded-xl flex items-center justify-center shadow-md'
-                      style={{ 
-                        background: userOS === 'mac' 
-                          ? 'linear-gradient(135deg, #333, #111)'
-                          : 'linear-gradient(135deg, #6B7280, #4B5563)'
-                      }}
-                    >
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                      </svg>
-                    </div>
-                    <div className='flex-1'>
-                      <div className='flex items-center gap-2'>
-                        <span className='font-bold text-base' style={{ color: userOS === 'mac' ? '#333' : 'var(--semi-color-text-0)' }}>
-                          macOS
-                        </span>
-                        {userOS === 'mac' && (
-                          <span 
-                            className='px-2 py-0.5 text-xs font-medium rounded-full'
-                            style={{ 
-                              background: 'linear-gradient(135deg, #333, #111)',
-                              color: 'white'
-                            }}
-                          >
-                               {t('当前系统')}
-                          </span>
-                        )}
-                      </div>
-                      <p className='text-xs mt-0.5' style={{ color: 'var(--semi-color-text-2)' }}>
-                        {t('解压后运行')} <code className={`px-1.5 py-0.5 rounded font-mono text-xs ${userOS === 'mac' ? 'bg-gray-300 text-gray-800' : 'bg-gray-200 text-gray-600'}`}>claude.command</code>
-                      </p>
-                    </div>
-                    <Button
-                      type={userOS === 'mac' ? 'primary' : 'secondary'}
-                      theme='solid'
-                      size='large'
-                      icon={<IconDownload />}
-                      onClick={() => window.open('/assets/files/Mac.zip', '_blank')}
-                      style={userOS === 'mac' ? { 
-                        background: 'linear-gradient(135deg, #333, #111)',
-                        borderColor: '#333'
-                      } : {}}
-                    >
-                      {t('下载')}
-                    </Button>
-                  </div>
-                </div>
-
-                <p className='text-xs mt-4 pt-3 border-t text-center' style={{ color: 'var(--semi-color-text-2)', borderColor: 'var(--semi-color-border)' }}>
-                  {t('安装完成后输入 API Key（使用后台创建的令牌），即可开始使用 Claude')}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className='text-center mt-8'>
-            <Button
-              theme='solid'
-              type='primary'
-              size='large'
-              className='!rounded-3xl px-8'
-              icon={<IconHelpCircle />}
-              onClick={() => navigate('/tutorial')}
-            >
-              {t('查看详细教程')}
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
+  
       <section 
         className='py-20 px-4'
         style={{
