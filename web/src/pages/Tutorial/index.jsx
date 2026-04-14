@@ -214,7 +214,7 @@ const TutorialPage = () => {
                     color: 'var(--semi-color-primary)',
                   }}
                 >
-                  💡 {t('复制令牌时注意检查前后是否有空格，确保准确复制。我们是 http 不是 https！')}
+                  💡 {t('复制令牌时注意检查前后是否有空格')}
                 </div>
                 
               </StepCard>
@@ -624,10 +624,6 @@ Model: claude-sonnet-4-20250514 (推荐)`} />
                   <li className='flex items-start gap-2'>
                     <span style={{ color: 'var(--semi-color-primary)' }}>→</span>
                     {t('复制 Key 时注意检查前后是否有空格')}
-                  </li>
-                  <li className='flex items-start gap-2'>
-                    <span style={{ color: '#fbde28' }}>→</span>
-                    <span style={{ color: '#fbde28' }}>{t('我们是 http 不是 https，千万别写错！')}</span>
                   </li>
                 </ul>
               </div>

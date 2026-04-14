@@ -276,13 +276,13 @@ const NewLandingPage = () => {
               type='tertiary'
               className='text-lg md:text-xl font-light mb-6 block'
             >
-              {t('支持众多的大模型供应商')}
+              {t('地表最强大模型Claude')}
             </Text>
             <div className='flex flex-wrap items-center justify-center gap-6 max-w-3xl mx-auto'>
               <div className='w-10 h-10 flex items-center justify-center'>
                 <Claude.Color size={40} />
               </div>
-              <div className='w-10 h-10 flex items-center justify-center'>
+              {/* <div className='w-10 h-10 flex items-center justify-center'>
                 <OpenAI size={40} />
               </div>
               <div className='w-10 h-10 flex items-center justify-center'>
@@ -296,7 +296,7 @@ const NewLandingPage = () => {
               </div>
               <div className='w-10 h-10 flex items-center justify-center'>
                 <Typography.Text className='!text-xl font-bold'>30+</Typography.Text>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -436,7 +436,7 @@ const NewLandingPage = () => {
                   {t('兑换额度并创建令牌')}
                 </h3>
                 <p className='text-sm' style={{ color: 'var(--semi-color-text-1)' }}>
-                  {t('点击「钱包管理」→「兑换额度」，然后点击「令牌管理」→「添加令牌」创建API Key。')}
+                  {t('点击「钱包管理」→「兑换额度或者订阅」，然后点击「令牌管理」→「添加令牌」创建API Key。')}
                 </p>
               </div>
             </div>
@@ -460,7 +460,7 @@ const NewLandingPage = () => {
               </div>
               <div className='flex-1'>
                 <h3 className='text-lg font-semibold mb-4' style={{ color: 'var(--semi-color-text-0)' }}>
-                  {t('下载并一键安装')}
+                  {t('下载并一键安装')}，（请关闭防病毒软件，防止安装失败）
                 </h3>
                 
                 {/* Windows 版本 */}
