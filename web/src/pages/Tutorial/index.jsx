@@ -194,19 +194,33 @@ const TutorialPage = () => {
                 title={t('复制使用 API Key')}
       
               >
-                <p>{t('复制令牌后，配合下方的 API 地址即可开始使用。')}</p>
                 <div className='mt-3 space-y-2'>
-                  <div className='flex items-center gap-2'>
-                    <span className='font-medium'>OpenAI {t('协议')}:</span>
-                    <CodeBlock code={`${serverAddress}/v1`} />
-                  </div>
-                  <div className='flex items-center gap-2'>
-                    <span className='font-medium'>Anthropic {t('协议')}:</span>
-                    <CodeBlock code={serverAddress} />
-                  </div>
+                <div
+                      className='mt-3 p-3 rounded-lg text-sm'
+                      style={{
+                        background: 'rgba(0, 240, 255, 0.1)',
+                        border: '1px solid rgba(0, 240, 255, 0.2)',
+                        color: 'var(--semi-color-primary)',
+                      }}
+                    >
+                      💡 Windows在一键安装过程中,会弹出记事本,将令牌粘贴到记事本中即可。如需要更新令牌,运行安装包中内的setup程序
                 </div>
 
+
                 <div
+                      className='mt-3 p-3 rounded-lg text-sm'
+                      style={{
+                        background: 'rgba(168, 85, 247, 0.1)',
+                        border: '1px solid rgba(168, 85, 247, 0.3)',
+                        color: '#a855f7',
+                      }}
+                    >
+                      💡 macOS在一键安装过程中,把令牌复制到窗口中即可
+                </div>
+
+                </div>
+
+                {/* <div
                   className='mt-3 p-3 rounded-lg text-sm'
                   style={{
                     background: 'rgba(0, 240, 255, 0.1)',
@@ -215,7 +229,7 @@ const TutorialPage = () => {
                   }}
                 >
                   💡 {t('复制令牌时注意检查前后是否有空格')}
-                </div>
+                </div> */}
                 
               </StepCard>
             </div>
